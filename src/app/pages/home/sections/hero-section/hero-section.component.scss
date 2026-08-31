@@ -222,9 +222,14 @@ $hero-bg-3: #08080A;
   margin-bottom: 0;
 
   @include down(sm) {
-    flex-wrap: wrap;
     gap: $space-2;
-    .hero__cta { flex: 1 1 auto; min-width: 0; }
+    .hero__cta {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 0.6rem 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+    }
   }
 }
 
