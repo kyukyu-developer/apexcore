@@ -4,17 +4,25 @@
 .site-footer {
   background: $color-bg-elev;
   color: rgba($color-white, 0.75);
-  padding-top: $space-8;
+  padding-top: $space-6;
   margin-top: 0;
   border-top: 1px solid $color-line;
+
+  @include up(md) { padding-top: $space-8; }
 }
 
 .site-footer__grid {
   display: grid;
-  gap: $space-7;
+  gap: $space-5;
   grid-template-columns: 1fr;
 
-  @include up(md) { grid-template-columns: 1.4fr 1fr 1.2fr 1.3fr; gap: $space-6; }
+  @include up(sm) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: $space-6; }
+  @include up(md) { grid-template-columns: 1.4fr 1fr 1.2fr 1.3fr; }
+}
+
+.site-footer__brand {
+  @include up(sm) { grid-column: 1 / -1; }
+  @include up(md) { grid-column: auto; }
 }
 
 .site-footer__brand app-logo { color: $color-gold; }
@@ -24,7 +32,9 @@
   font-size: 0.9rem;
   line-height: 1.65;
   color: rgba($color-white, 0.60);
-  max-width: 320px;
+  max-width: none;
+
+  @include up(md) { max-width: 320px; }
 }
 
 .site-footer__social {
@@ -97,19 +107,24 @@
 }
 
 .site-footer__bottom {
-  margin-top: $space-8;
+  margin-top: $space-6;
   padding: $space-4 0;
   border-top: 1px solid rgba($color-white, 0.08);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: rgba($color-white, 0.45);
+
+  @include up(md) { margin-top: $space-8; font-size: 0.85rem; }
 }
 
 .site-footer__bottom-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: $space-4;
+  gap: $space-3;
   flex-wrap: wrap;
+  text-align: center;
+
+  @include up(sm) { justify-content: space-between; text-align: left; }
 }
 
 .site-footer__legal {

@@ -16,8 +16,10 @@
 .section-head__title { @include heading-section; }
 
 .section-head__lead {
-  margin-top: $space-4;
+  margin-top: $space-3;
   color: $color-muted;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   line-height: 1.65;
+
+  @include up(md) { margin-top: $space-4; font-size: 1.05rem; }
 }

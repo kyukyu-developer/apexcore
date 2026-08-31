@@ -10,7 +10,7 @@ $hero-bg-3: #08080A;
 
 .hero {
   position: relative;
-  padding: calc(var(--header-height, 92px) + #{$space-3}) 0 0;
+  padding: calc(var(--header-height, 64px) + #{$space-2}) 0 0;
   overflow: hidden;
   isolation: isolate;
   color: $color-white;
@@ -34,12 +34,16 @@ $hero-bg-3: #08080A;
   top: -120px; right: 10%;
   background: $color-gold;
   opacity: 0.10;
+
+  @include down(md) { width: 260px; height: 260px; top: -60px; filter: blur(80px); }
 }
 .hero__blob--red {
   width: 420px; height: 420px;
   top: 260px; right: -140px;
   background: $color-red;
   opacity: 0.06;
+
+  @include down(md) { width: 220px; height: 220px; top: 180px; right: -80px; filter: blur(80px); }
 }
 
 // Diagonal gold light rays at bottom-left
@@ -64,7 +68,7 @@ $hero-bg-3: #08080A;
 
 .hero__inner {
   display: grid;
-  gap: $space-6;
+  gap: $space-5;
   align-items: center;
   grid-template-columns: 1fr;
   padding-bottom: $space-6;
@@ -83,13 +87,19 @@ $hero-bg-3: #08080A;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: $space-4;
+  margin-bottom: $space-3;
   color: $color-gold;
   font-family: $font-body;
   font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+
+  @include up(md) {
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    margin-bottom: $space-4;
+  }
 
   .hero__eyebrow-bar {
     width: 30px;
@@ -105,14 +115,18 @@ $hero-bg-3: #08080A;
   letter-spacing: -0.01em;
   line-height: 1.1;
   color: $color-white;
-  font-size: clamp(1.85rem, 3.6vw, 2.85rem);
-  margin: 0 0 $space-5;
+  font-size: clamp(1.6rem, 6.5vw, 2.85rem);
+  margin: 0 0 $space-4;
+
+  @include up(md) { margin-bottom: $space-5; }
 
   .hero__title-line {
     display: block;
     min-height: 1em;
-    // Prevent line-breaking between per-character inline-block spans.
-    white-space: nowrap;
+    // Allow wrapping on narrow viewports; keep chars together only per-word.
+    white-space: normal;
+
+    @include up(md) { white-space: nowrap; }
 
     // Before the line starts typing, don't reserve character space
     &:not(.is-typing) .hero__title-char { display: none; }
@@ -192,10 +206,12 @@ $hero-bg-3: #08080A;
 
 .hero__lead {
   color: rgba($color-white, 0.72);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.65;
   max-width: 380px;
-  margin: 0 0 $space-5;
+  margin: 0 0 $space-4;
+
+  @include up(md) { font-size: 0.9rem; margin-bottom: $space-5; }
 }
 
 // CTA buttons ------------------------------------------------
@@ -205,7 +221,11 @@ $hero-bg-3: #08080A;
   gap: $space-3;
   margin-bottom: 0;
 
-  @include down(sm) { flex-wrap: wrap; }
+  @include down(sm) {
+    flex-wrap: wrap;
+    gap: $space-2;
+    .hero__cta { flex: 1 1 auto; min-width: 0; }
+  }
 }
 
 .hero__cta {
@@ -279,6 +299,8 @@ $hero-bg-3: #08080A;
   max-width: 720px;
   aspect-ratio: 3 / 2;
   animation: heroFloat 6s ease-in-out infinite;
+
+  @include down(sm) { aspect-ratio: 4 / 3; }
 }
 
 .hero__slide {
@@ -334,9 +356,10 @@ $hero-bg-3: #08080A;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: $space-2;
-  margin-top: $space-5;
+  margin-top: $space-4;
 
-  @include down(sm) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: $space-3; }
+  @include up(md) { margin-top: $space-5; }
+  @include down(sm) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: $space-2; }
 }
 
 .hero__feature {
@@ -478,6 +501,9 @@ $hero-bg-3: #08080A;
   letter-spacing: 0.10em;
   text-transform: uppercase;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
   transition: color $dur-base $ease-out;
 }
 
@@ -491,6 +517,9 @@ $hero-bg-3: #08080A;
   color: rgba($color-white, 0.9);
   margin-top: 2px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 // ============================================================

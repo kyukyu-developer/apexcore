@@ -5,11 +5,12 @@
   position: relative;
   overflow: hidden;
   border-radius: $radius-xl;
-  padding: $space-8 $space-6;
+  padding: $space-6 $space-4;
   background: linear-gradient(135deg, #1B1C1E 0%, #2A1A1D 60%, #3B1F24 100%);
   color: $color-white;
   isolation: isolate;
 
+  @include up(sm) { padding: $space-7 $space-5; }
   @include up(md) { padding: $space-9 $space-8; }
 }
 
@@ -65,7 +66,7 @@
 .cta__title {
   font-family: $font-display;
   font-weight: 800;
-  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  font-size: clamp(1.4rem, 6vw, 2.8rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: $color-white;
@@ -74,9 +75,11 @@
 
 .cta__text {
   color: rgba($color-white, 0.75);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   line-height: 1.65;
-  margin-bottom: $space-6;
+  margin-bottom: $space-5;
+
+  @include up(md) { font-size: 1.05rem; margin-bottom: $space-6; }
 }
 
 .cta__actions {
@@ -84,4 +87,9 @@
   justify-content: center;
   gap: $space-3;
   flex-wrap: wrap;
+
+  @include down(sm) {
+    gap: $space-2;
+    > * { flex: 1 1 auto; min-width: 0; }
+  }
 }
