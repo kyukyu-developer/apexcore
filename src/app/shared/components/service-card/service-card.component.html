@@ -1,0 +1,25 @@
+<article class="service-card" [class]="'service-card--' + service.accent">
+  <span class="service-card__accent-bar" aria-hidden="true"></span>
+  <span class="service-card__corner-glow" aria-hidden="true"></span>
+
+  <div class="service-card__top">
+    <div class="service-card__icon">
+      <app-icon [name]="service.icon" [size]="26"></app-icon>
+    </div>
+    <span *ngIf="indexLabel" class="service-card__index">{{ indexLabel }}</span>
+  </div>
+
+  <h3 class="service-card__title">{{ service.title }}</h3>
+  <p class="service-card__summary">{{ service.summary }}</p>
+
+  <ul *ngIf="topBullets.length" class="service-card__tags">
+    <li *ngFor="let b of topBullets" class="service-card__tag">{{ b }}</li>
+  </ul>
+
+  <a class="service-card__link" [routerLink]="service.route">
+    <span class="service-card__link-label">Learn More</span>
+    <span class="service-card__link-icon">
+      <app-icon name="arrow-right" [size]="14"></app-icon>
+    </span>
+  </a>
+</article>

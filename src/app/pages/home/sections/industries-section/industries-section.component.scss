@@ -1,0 +1,58 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.industries {
+  background: $color-bg-light;
+}
+
+.industries__grid {
+  margin-top: $space-7;
+  display: grid;
+  gap: $space-4;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include up(sm) { grid-template-columns: repeat(3, 1fr); }
+  @include up(md) { grid-template-columns: repeat(4, 1fr); }
+}
+
+.industry {
+  background: $color-bg-cream;
+  border: 1px solid $color-line;
+  border-radius: $radius-lg;
+  padding: $space-6 $space-4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-3;
+  text-align: center;
+  transition: transform $dur-base $ease-out, box-shadow $dur-base $ease-out, border-color $dur-base $ease-out, background $dur-base $ease-out;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-card;
+    border-color: rgba($color-red, 0.30);
+  }
+}
+
+.industry__icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: rgba($color-gold, 0.14);
+  color: $color-gold-deep;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background $dur-base $ease-out, color $dur-base $ease-out;
+}
+
+.industry:hover .industry__icon {
+  background: $color-red;
+  color: $color-white;
+}
+
+.industry__name {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: $color-dark;
+}

@@ -1,0 +1,416 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.about { background: $color-bg-base; }
+
+.about__grid {
+  display: grid;
+  gap: $space-5;
+  grid-template-columns: 1fr;
+
+  @include up(md) { grid-template-columns: 1fr 1fr; }
+  @include up(lg) { grid-template-columns: 1fr 1.15fr 1fr; align-items: stretch; }
+}
+
+// ====================================================================
+//  Left — visual scene
+// ====================================================================
+.about__visual {
+  border-radius: $radius-xl;
+  overflow: hidden;
+  min-height: 380px;
+  position: relative;
+
+  @include up(lg) { min-height: 100%; }
+}
+
+.about__scene {
+  position: relative;
+  width: 100%; height: 100%;
+  min-height: 380px;
+  overflow: hidden;
+  border-radius: $radius-xl;
+}
+
+.about__scene-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, #33363B 0%, #1B1D21 100%);
+}
+
+.about__scene-tint {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba($color-red, 0.35) 0%, transparent 60%);
+  mix-blend-mode: overlay;
+}
+
+.about__scene-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba($color-gold, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba($color-gold, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse at 50% 55%, black 40%, transparent 85%);
+}
+
+// Orbits behind the scene
+.about__orbit {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  border: 1px dashed rgba($color-gold, 0.25);
+  transform: translate(-50%, -50%);
+  animation: about-spin 22s linear infinite;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: $color-gold;
+    box-shadow: 0 0 12px rgba($color-gold, 0.7);
+    top: -4px; left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.about__orbit--1 { width: 180px; height: 180px; }
+.about__orbit--2 {
+  width: 280px; height: 280px;
+  animation-duration: 34s;
+  animation-direction: reverse;
+  border-color: rgba($color-red-soft, 0.18);
+  &::after { background: $color-red; box-shadow: 0 0 14px rgba($color-red, 0.7); }
+}
+.about__orbit--3 {
+  width: 380px; height: 380px;
+  animation-duration: 46s;
+  border-color: rgba($color-white, 0.08);
+  &::after { background: $color-gold-soft; }
+}
+
+// Floating dashboard card
+.about__dash {
+  position: absolute;
+  top: 22%; left: 12%;
+  width: 62%;
+  padding: $space-3 $space-4 $space-4;
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba($color-gold, 0.2);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  animation: about-float 6s $ease-in-out infinite;
+}
+.about__dash-head {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: $space-3;
+
+  em {
+    margin-left: auto;
+    font-style: normal;
+    font-size: 0.7rem;
+    color: rgba($color-white, 0.5);
+    letter-spacing: 0.05em;
+  }
+}
+.about__dash-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba($color-white, 0.25);
+
+  &:first-child { background: $color-red; }
+  &:nth-child(2) { background: $color-gold; }
+}
+.about__dash-chart {
+  display: flex; align-items: flex-end;
+  gap: 6px;
+  height: 70px;
+  margin-bottom: $space-3;
+
+  span {
+    flex: 1;
+    height: var(--h);
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(180deg, $color-gold 0%, rgba($color-gold, 0.15) 100%);
+    transform-origin: bottom;
+    animation: about-bar 2.4s $ease-in-out var(--d) infinite;
+  }
+  span:nth-child(4) {
+    background: linear-gradient(180deg, $color-red 0%, rgba($color-red, 0.2) 100%);
+  }
+}
+.about__dash-line {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba($color-white, 0.12);
+  margin-bottom: 6px;
+
+  &--short { width: 55%; }
+}
+
+// Floating code snippet card
+.about__snippet {
+  position: absolute;
+  bottom: 20%; right: 8%;
+  width: 44%;
+  padding: $space-3;
+  border-radius: 12px;
+  background: linear-gradient(160deg, rgba(168, 34, 46, 0.25) 0%, rgba(0, 0, 0, 0.35) 100%);
+  border: 1px solid rgba($color-red-soft, 0.25);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+  animation: about-float 7.5s $ease-in-out 0.6s infinite;
+}
+.about__snippet-row {
+  display: flex; gap: 6px; align-items: center;
+  margin-bottom: 8px;
+
+  &:last-child { margin-bottom: 0; }
+
+  i {
+    display: block;
+    height: 6px;
+    border-radius: 2px;
+    background: rgba($color-white, 0.35);
+  }
+  i:first-child { width: 18px; background: $color-gold; }
+  i:nth-child(2) { flex: 1; background: rgba($color-white, 0.15); }
+  i:nth-child(3) { width: 26px; background: rgba($color-gold, 0.5); }
+}
+
+.about__particle {
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: $color-gold;
+  box-shadow: 0 0 10px rgba($color-gold, 0.9);
+  animation: about-drift 8s $ease-in-out infinite;
+
+  &--1 { top: 18%; right: 14%; animation-delay: 0s; }
+  &--2 { top: 65%; left: 18%; background: $color-red; box-shadow: 0 0 10px rgba($color-red, 0.9); animation-delay: 1.5s; }
+  &--3 { top: 40%; right: 6%; width: 4px; height: 4px; animation-delay: 3s; }
+  &--4 { bottom: 12%; left: 45%; width: 5px; height: 5px; background: $color-gold-soft; animation-delay: 2s; }
+}
+
+@keyframes about-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes about-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes about-bar {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.55); }
+}
+@keyframes about-drift {
+  0%, 100% { transform: translate(0, 0); opacity: 0.9; }
+  50%      { transform: translate(-8px, -14px); opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__orbit,
+  .about__dash,
+  .about__snippet,
+  .about__dash-chart span,
+  .about__particle { animation: none; }
+}
+
+// Badge overlay
+.about__badge {
+  position: absolute;
+  top: $space-5; left: $space-5;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-3 $space-4;
+  background: rgba($color-white, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: $radius-pill;
+  border: 1px solid rgba($color-gold, 0.35);
+}
+
+.about__badge-mark {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba($color-gold, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about__badge-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  strong { font-family: $font-display; font-weight: 800; color: $color-gold; font-size: 0.95rem; }
+  em     { font-style: normal; color: rgba($color-white, 0.75); font-size: 0.68rem; letter-spacing: 0.08em; }
+}
+
+.about__badge-note {
+  position: absolute;
+  bottom: $space-5; left: $space-5; right: $space-5;
+  color: rgba($color-white, 0.85);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  z-index: 2;
+  max-width: 260px;
+  font-weight: 500;
+}
+
+// ====================================================================
+//  Middle — About copy
+// ====================================================================
+.about__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: $space-4 0;
+
+  @include up(lg) { padding: $space-4; }
+}
+
+.about__eyebrow { @include eyebrow; display: inline-block; margin-bottom: $space-3; }
+
+.about__title {
+  @include heading-section;
+  font-size: clamp(1.6rem, 3vw, 2.35rem);
+  margin-bottom: $space-4;
+}
+
+.about__body {
+  color: $color-muted;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin-bottom: $space-5;
+}
+
+.about__checks {
+  display: grid;
+  gap: $space-3;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    font-family: $font-body;
+    font-weight: 500;
+    color: $color-dark;
+    font-size: 0.92rem;
+  }
+}
+
+.about__check-mark {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba($color-gold, 0.18);
+  color: $color-gold-deep;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba($color-gold, 0.35);
+}
+
+// ====================================================================
+//  Right — Red CTA card
+// ====================================================================
+.about__cta {
+  position: relative;
+  border-radius: $radius-xl;
+  padding: $space-6;
+  background: linear-gradient(135deg, $color-red 0%, $color-red-deep 60%, #6A0F18 100%);
+  color: $color-white;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 340px;
+
+  @include up(lg) { min-height: 100%; }
+}
+
+.about__cta-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.about__cta-glow {
+  position: absolute;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: rgba($color-gold, 0.35);
+  filter: blur(60px);
+  top: -80px; right: -80px;
+}
+.about__cta-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba($color-white, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba($color-white, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at 30% 60%, black 30%, transparent 80%);
+}
+
+.about__cta-ring {
+  position: absolute;
+  top: 22%; right: -40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba($color-gold, 0.55);
+  animation: about-pulse 3s $ease-out infinite;
+}
+.about__cta-ring--1 { width: 90px;  height: 90px;  animation-delay: 0s; }
+.about__cta-ring--2 { width: 90px;  height: 90px;  animation-delay: 1s; }
+.about__cta-ring--3 { width: 90px;  height: 90px;  animation-delay: 2s; }
+
+.about__cta-spark {
+  position: absolute;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: $color-gold-soft;
+  box-shadow: 0 0 10px rgba($color-gold-soft, 0.9);
+  animation: about-drift 7s $ease-in-out infinite;
+
+  &--1 { bottom: 30%; left: 12%; animation-delay: 0s; }
+  &--2 { top: 55%;   right: 22%; animation-delay: 1.8s; background: $color-white; box-shadow: 0 0 10px rgba($color-white, 0.9); }
+  &--3 { bottom: 18%; left: 60%; animation-delay: 3.4s; width: 3px; height: 3px; }
+}
+
+@keyframes about-pulse {
+  0%   { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__cta-ring,
+  .about__cta-spark { animation: none; }
+}
+
+.about__cta-icon { color: $color-gold; margin-bottom: $space-5; }
+
+.about__cta-title {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: $space-3;
+}
+
+.about__cta-text {
+  color: rgba($color-white, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: $space-5;
+}
+
+.about__cta-btn {
+  align-self: flex-start;
+  background: $color-white;
+  color: #1B1B1F;
+  border-color: $color-white;
+
+  &:hover {
+    background: $color-gold;
+    color: #1B1B1F;
+    border-color: $color-gold;
+  }
+}

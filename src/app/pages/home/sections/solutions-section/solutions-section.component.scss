@@ -1,0 +1,75 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.solutions { background: $color-bg-base; }
+
+.solutions__grid {
+  margin-top: $space-7;
+  display: grid;
+  gap: $space-4;
+  grid-template-columns: 1fr;
+
+  @include up(sm) { grid-template-columns: repeat(2, 1fr); }
+  @include up(md) { grid-template-columns: repeat(3, 1fr); }
+  @include up(lg) { grid-template-columns: repeat(4, 1fr); }
+}
+
+.solution {
+  position: relative;
+  padding: $space-5;
+  border-radius: $radius-lg;
+  background: $color-bg-cream;
+  border: 1px solid $color-line;
+  transition: transform $dur-base $ease-out, box-shadow $dur-base $ease-out, border-color $dur-base $ease-out;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: auto -30% -50% auto;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba($color-gold, 0.16) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity $dur-base $ease-out;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-card;
+    border-color: rgba($color-gold, 0.5);
+    &::after { opacity: 1; }
+  }
+}
+
+.solution__icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($color-red, 0.08);
+  color: $color-red;
+  margin-bottom: $space-4;
+}
+
+.solution:nth-child(odd) .solution__icon {
+  background: rgba($color-gold, 0.15);
+  color: $color-gold-deep;
+}
+
+.solution__title {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: $color-dark;
+  margin-bottom: 4px;
+}
+
+.solution__desc {
+  color: $color-muted;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  position: relative;
+  z-index: 1;
+}

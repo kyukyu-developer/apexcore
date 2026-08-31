@@ -1,0 +1,96 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.why {
+  background:
+    radial-gradient(ellipse at top right, rgba($color-gold, 0.10) 0%, transparent 50%),
+    $color-bg-light;
+}
+
+.why__grid {
+  display: grid;
+  gap: $space-8;
+  grid-template-columns: 1fr;
+
+  @include up(lg) { grid-template-columns: 0.9fr 1.2fr; gap: $space-8; align-items: start; }
+}
+
+.why__note {
+  margin-top: $space-6;
+  display: flex;
+  gap: $space-4;
+  padding: $space-5;
+  background: $color-bg-cream;
+  border: 1px solid $color-line;
+  border-left: 3px solid $color-red;
+  border-radius: $radius-md;
+
+  strong { display: block; font-family: $font-display; color: $color-dark; margin-bottom: 4px; }
+  p { color: $color-muted; font-size: 0.94rem; line-height: 1.55; }
+}
+
+.why__note-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba($color-red, 0.08);
+  color: $color-red;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.why__list {
+  display: grid;
+  gap: $space-4;
+  grid-template-columns: 1fr;
+
+  @include up(sm) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.why__item {
+  background: $color-bg-cream;
+  padding: $space-5;
+  border-radius: $radius-lg;
+  border: 1px solid $color-line;
+  display: flex;
+  gap: $space-4;
+  transition: transform $dur-base $ease-out, box-shadow $dur-base $ease-out, border-color $dur-base $ease-out;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+    border-color: rgba($color-gold, 0.5);
+  }
+}
+
+.why__item-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: rgba($color-gold, 0.14);
+  color: $color-gold-deep;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.why__item:nth-child(even) .why__item-icon {
+  background: rgba($color-red, 0.08);
+  color: $color-red;
+}
+
+.why__item-body {
+  h3 {
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: $color-dark;
+    margin-bottom: 4px;
+  }
+  p {
+    color: $color-body;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+}

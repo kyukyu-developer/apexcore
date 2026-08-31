@@ -1,0 +1,122 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.site-footer {
+  background: $color-bg-elev;
+  color: rgba($color-white, 0.75);
+  padding-top: $space-8;
+  margin-top: 0;
+  border-top: 1px solid $color-line;
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: $space-7;
+  grid-template-columns: 1fr;
+
+  @include up(md) { grid-template-columns: 1.4fr 1fr 1.2fr 1.3fr; gap: $space-6; }
+}
+
+.site-footer__brand app-logo { color: $color-gold; }
+
+.site-footer__blurb {
+  margin-top: $space-4;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba($color-white, 0.60);
+  max-width: 320px;
+}
+
+.site-footer__social {
+  margin-top: $space-5;
+  display: flex;
+  gap: $space-2;
+
+  a {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba($color-white, 0.7);
+    background: rgba($color-white, 0.06);
+    transition: background $dur-fast $ease-out, color $dur-fast $ease-out, transform $dur-fast $ease-out;
+
+    &:hover { background: $color-red; color: $color-white; transform: translateY(-2px); }
+  }
+}
+
+.site-footer__title {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: $color-white;
+  margin-bottom: $space-4;
+  letter-spacing: 0.01em;
+}
+
+.site-footer__list {
+  display: grid;
+  gap: $space-3;
+
+  a {
+    color: rgba($color-white, 0.60);
+    font-size: 0.92rem;
+    transition: color $dur-fast $ease-out, padding $dur-fast $ease-out;
+
+    &:hover { color: $color-gold; }
+  }
+}
+
+.site-footer__contact {
+  display: grid;
+  gap: $space-3;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    font-size: 0.92rem;
+    color: rgba($color-white, 0.70);
+  }
+}
+
+.site-footer__contact-icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba($color-gold, 0.14);
+  color: $color-gold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.site-footer__btn {
+  margin-top: $space-5;
+}
+
+.site-footer__bottom {
+  margin-top: $space-8;
+  padding: $space-4 0;
+  border-top: 1px solid rgba($color-white, 0.08);
+  font-size: 0.85rem;
+  color: rgba($color-white, 0.45);
+}
+
+.site-footer__bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $space-4;
+  flex-wrap: wrap;
+}
+
+.site-footer__legal {
+  display: inline-flex;
+  gap: $space-3;
+  align-items: center;
+
+  a:hover { color: $color-gold; }
+  span { color: rgba($color-white, 0.25); }
+}

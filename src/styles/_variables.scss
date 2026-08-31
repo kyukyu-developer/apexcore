@@ -1,0 +1,78 @@
+// ============================================================================
+//  APEX CORE — Design tokens
+// ============================================================================
+
+// Brand
+$color-gold:        #EEB33A;
+$color-gold-soft:   #F7D07C;
+$color-gold-deep:   #C48E1D;
+$color-red:         #CF2224;
+$color-red-deep:    #A31A1C;
+$color-red-soft:    #FBDDDD;
+
+// Neutrals — dark theme
+$color-dark:        #F1F2F4;   // primary text / headings on dark
+$color-body:        #C7CACF;   // body text
+$color-muted:       #8B8F96;   // muted text
+$color-line:        #2A2B31;   // subtle border on dark
+$color-line-soft:   #1E1F24;   // softer border
+$color-bg-light:    #131317;   // section surface
+$color-bg-cream:    #17181D;   // card / warm surface
+$color-white:       #FFFFFF;   // pure white (text on colored buttons)
+
+// Dark theme surfaces
+$color-bg-base:     #0B0B0D;   // page background
+$color-bg-elev:     #1B1C21;   // elevated surface
+
+// Typography
+$font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+$font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+
+// Spacing scale (rem)
+$space-1:  0.25rem;   //  4
+$space-2:  0.5rem;    //  8
+$space-3:  0.75rem;   // 12
+$space-4:  1rem;      // 16
+$space-5:  1.5rem;    // 24
+$space-6:  2rem;      // 32
+$space-7:  3rem;      // 48
+$space-8:  4rem;      // 64
+$space-9:  6rem;      // 96
+$space-10: 8rem;      // 128
+
+// Radii
+$radius-sm:   6px;
+$radius-md:   12px;
+$radius-lg:   20px;
+$radius-xl:   28px;
+$radius-pill: 999px;
+
+// Shadows
+$shadow-xs:    0 1px 2px rgba(32, 33, 36, 0.04);
+$shadow-sm:    0 2px 6px rgba(32, 33, 36, 0.06);
+$shadow-card:  0 8px 24px rgba(32, 33, 36, 0.06), 0 2px 6px rgba(32, 33, 36, 0.04);
+$shadow-hover: 0 20px 40px rgba(32, 33, 36, 0.10), 0 6px 12px rgba(32, 33, 36, 0.06);
+$shadow-gold:  0 12px 28px rgba(212, 175, 121, 0.28);
+$shadow-red:   0 12px 28px rgba(168, 34, 46, 0.28);
+
+// Layout
+$container-max: 1200px;
+$container-pad: $space-5;
+
+// Breakpoints
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+// Motion
+$ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+$ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+$dur-fast: 160ms;
+$dur-base: 240ms;
+$dur-slow: 420ms;
+
+// z-index
+$z-header:  100;
+$z-drawer:  200;
+$z-modal:   300;

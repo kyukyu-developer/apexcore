@@ -1,0 +1,25 @@
+<section class="page-hero">
+  <div class="page-hero__bg" aria-hidden="true">
+    <div class="page-hero__blob page-hero__blob--gold"></div>
+    <div class="page-hero__blob page-hero__blob--red"></div>
+  </div>
+  <div class="container page-hero__inner">
+    <span class="page-hero__eyebrow">{{ eyebrow }}</span>
+    <h1 class="page-hero__title">{{ title }}</h1>
+    <p class="page-hero__lead">{{ lead }}</p>
+
+    <div class="page-hero__actions">
+      <a class="btn btn--primary" routerLink="/contact">
+        Contact Us
+        <app-icon name="arrow-right" [size]="14"></app-icon>
+      </a>
+      <a class="btn btn--ghost" routerLink="/">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <app-cta-banner></app-cta-banner>
+  </div>
+</section>

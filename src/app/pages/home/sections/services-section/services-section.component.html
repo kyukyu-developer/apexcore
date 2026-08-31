@@ -1,0 +1,42 @@
+<section class="section services" id="services">
+  <div class="services__bg" aria-hidden="true">
+    <span class="services__glow services__glow--gold"></span>
+    <span class="services__glow services__glow--red"></span>
+    <div class="services__grid-pattern"></div>
+  </div>
+
+  <div class="container services__inner">
+    <div class="services__head">
+      <div class="services__head-left">
+        <span class="services__eyebrow">
+          <span class="services__eyebrow-dot"></span>
+          Our Services
+        </span>
+        <h2 class="services__title">
+          Complete IT Solutions<br>
+          For <span class="text-gold">Your Business</span>
+        </h2>
+      </div>
+
+      <div class="services__head-right">
+        <p class="services__head-desc">
+          We provide a wide range of IT services to help your business
+          streamline operations, build a strong brand identity and communicate
+          professionally.
+        </p>
+        <a class="services__head-cta" routerLink="/services">
+          Explore all services
+          <app-icon name="arrow-right" [size]="16"></app-icon>
+        </a>
+      </div>
+    </div>
+
+    <div class="services__grid">
+      <app-service-card
+        *ngFor="let s of services; let i = index"
+        [service]="s"
+        [index]="i + 1">
+      </app-service-card>
+    </div>
+  </div>
+</section>

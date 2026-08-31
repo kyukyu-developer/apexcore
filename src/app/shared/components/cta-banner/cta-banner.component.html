@@ -1,0 +1,20 @@
+<div class="cta">
+  <div class="cta__decor" aria-hidden="true">
+    <div class="cta__blob cta__blob--gold"></div>
+    <div class="cta__blob cta__blob--red"></div>
+    <div class="cta__grid"></div>
+  </div>
+
+  <div class="cta__body">
+    <span class="cta__eyebrow">Ready when you are</span>
+    <h2 class="cta__title">{{ headline }}</h2>
+    <p class="cta__text">{{ text }}</p>
+    <div class="cta__actions">
+      <a class="btn btn--gold btn--lg" [routerLink]="primaryRoute">
+        {{ primaryLabel }}
+        <app-icon name="arrow-right" [size]="16"></app-icon>
+      </a>
+      <a class="btn btn--outline-light btn--lg" [routerLink]="secondaryRoute">{{ secondaryLabel }}</a>
+    </div>
+  </div>
+</div>

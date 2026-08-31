@@ -1,0 +1,11 @@
+<section class="trusted">
+  <div class="container">
+    <p class="trusted__label">Trusted by businesses of all sizes</p>
+    <ul class="trusted__grid">
+      <li *ngFor="let it of items" class="trusted__item">
+        <app-icon [name]="it.icon" [size]="20"></app-icon>
+        <span>{{ it.label }}</span>
+      </li>
+    </ul>
+  </div>
+</section>

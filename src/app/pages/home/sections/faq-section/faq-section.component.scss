@@ -1,0 +1,26 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.faq-section { background: $color-bg-base; }
+
+.faq-section__wrap {
+  display: grid;
+  gap: $space-7;
+  grid-template-columns: 1fr;
+
+  @include up(lg) { grid-template-columns: 0.85fr 1.15fr; gap: $space-8; align-items: start; }
+}
+
+.faq-section__aside {
+  @include up(lg) {
+    position: sticky;
+    top: 100px;
+  }
+}
+
+.faq-section__cta { margin-top: $space-5; }
+
+.faq-section__list {
+  display: grid;
+  gap: $space-3;
+}

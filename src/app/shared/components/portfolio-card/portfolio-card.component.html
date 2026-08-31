@@ -1,0 +1,16 @@
+<article class="portfolio-card" [class]="'portfolio-card--' + item.gradient">
+  <div class="portfolio-card__visual" aria-hidden="true">
+    <div class="portfolio-card__glow"></div>
+    <div class="portfolio-card__grid"></div>
+    <div class="portfolio-card__badge">DEMO</div>
+    <div class="portfolio-card__label">{{ item.category }}</div>
+  </div>
+
+  <div class="portfolio-card__body">
+    <h3 class="portfolio-card__title">{{ item.title }}</h3>
+    <p class="portfolio-card__desc">{{ item.description }}</p>
+    <ul class="portfolio-card__tags">
+      <li *ngFor="let t of item.tags">{{ t }}</li>
+    </ul>
+  </div>
+</article>

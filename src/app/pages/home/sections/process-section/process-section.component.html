@@ -1,0 +1,27 @@
+<section class="section process" id="process">
+  <div class="container process__wrap">
+    <div class="process__aside">
+      <app-section-title
+        eyebrow="Our Process"
+        title="A predictable path"
+        highlight="from idea to launch."
+        lead="Every project follows the same clear five-step process — so you always know what happens next.">
+      </app-section-title>
+
+      <div class="process__aside-note">
+        <div class="process__aside-icon">
+          <app-icon name="rocket" [size]="18"></app-icon>
+        </div>
+        <p>Fixed milestones. Transparent updates. No surprises at the end.</p>
+      </div>
+    </div>
+
+    <div class="process__timeline">
+      <app-process-step
+        *ngFor="let s of steps; let last = last"
+        [step]="s"
+        [isLast]="last">
+      </app-process-step>
+    </div>
+  </div>
+</section>

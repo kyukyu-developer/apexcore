@@ -1,0 +1,13 @@
+<div class="process-step">
+  <div class="process-step__marker">
+    <div class="process-step__number">{{ step.step | number:'2.0' }}</div>
+    <div class="process-step__ring">
+      <app-icon [name]="step.icon" [size]="22"></app-icon>
+    </div>
+    <span class="process-step__line" *ngIf="!isLast" aria-hidden="true"></span>
+  </div>
+  <div class="process-step__body">
+    <h3 class="process-step__title">{{ step.title }}</h3>
+    <p class="process-step__text">{{ step.description }}</p>
+  </div>
+</div>

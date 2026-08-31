@@ -1,0 +1,30 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+:host { display: inline-flex; }
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  transition: opacity $dur-fast $ease-out;
+
+  &:hover { opacity: 0.9; }
+}
+
+.logo__img {
+  display: block;
+  width: auto;
+  height: 44px;
+  object-fit: contain;
+}
+
+// Size variants
+.logo--sm .logo__img { height: 34px; }
+.logo--md .logo__img { height: 46px; }
+.logo--lg .logo__img { height: 66px; }
+
+// On dark surfaces the coloured logo can look muddy; a subtle brightness lift
+// keeps it visible without altering its brand colours.
+.logo--light .logo__img {
+  filter: brightness(1.05) contrast(1.05) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}

@@ -1,0 +1,74 @@
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+
+    <div class="site-footer__brand">
+      <app-logo variant="light" size="md" [showTagline]="true"></app-logo>
+      <p class="site-footer__blurb">
+        We provide smart, secure and scalable IT solutions to help businesses grow and succeed in the digital era.
+      </p>
+      <div class="site-footer__social" aria-label="Social links">
+        <a href="#" aria-label="Facebook"><app-icon name="facebook" [size]="16"></app-icon></a>
+        <a href="#" aria-label="LinkedIn"><app-icon name="linkedin" [size]="16"></app-icon></a>
+        <a href="#" aria-label="Instagram"><app-icon name="brand" [size]="16"></app-icon></a>
+        <a href="#" aria-label="Telegram"><app-icon name="telegram" [size]="16"></app-icon></a>
+      </div>
+    </div>
+
+    <div class="site-footer__col">
+      <h4 class="site-footer__title">Quick Links</h4>
+      <ul class="site-footer__list">
+        <li *ngFor="let l of quickLinks">
+          <a [routerLink]="l.route">{{ l.label }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h4 class="site-footer__title">Our Services</h4>
+      <ul class="site-footer__list">
+        <li *ngFor="let l of serviceLinks">
+          <a [routerLink]="l.route">{{ l.label }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h4 class="site-footer__title">Contact Us</h4>
+      <ul class="site-footer__contact">
+        <li>
+          <span class="site-footer__contact-icon">
+            <app-icon name="phone" [size]="14"></app-icon>
+          </span>
+          <a href="tel:+959663606129">09 663 606 129</a>
+        </li>
+        <li>
+          <span class="site-footer__contact-icon">
+            <app-icon name="mail" [size]="14"></app-icon>
+          </span>
+          <a href="mailto:info&#64;apexcorebusiness.com">info&#64;apexcorebusiness.com</a>
+        </li>
+        <li>
+          <span class="site-footer__contact-icon">
+            <app-icon name="pin" [size]="14"></app-icon>
+          </span>
+          <span>Yangon, Myanmar</span>
+        </li>
+      </ul>
+      <a class="btn btn--gold site-footer__btn" routerLink="/contact">
+        Get in Touch
+        <app-icon name="arrow-right" [size]="14"></app-icon>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <div class="container site-footer__bottom-row">
+      <span>© {{ year }} APEX CORE. All Rights Reserved.</span>
+      <span class="site-footer__legal">
+        <a href="#">Privacy Policy</a>
+        <span aria-hidden="true">|</span>
+        <a href="#">Terms &amp; Conditions</a>
+      </span>
+    </div>
+  </div>
+</footer>

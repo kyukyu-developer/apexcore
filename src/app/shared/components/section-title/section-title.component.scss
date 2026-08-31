@@ -1,0 +1,23 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.section-head {
+  max-width: 720px;
+
+  &--center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
+
+.section-head__eyebrow { @include eyebrow; display: inline-block; margin-bottom: $space-3; }
+
+.section-head__title { @include heading-section; }
+
+.section-head__lead {
+  margin-top: $space-4;
+  color: $color-muted;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}

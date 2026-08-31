@@ -1,0 +1,21 @@
+<section class="section portfolio" id="portfolio">
+  <div class="container">
+    <div class="portfolio__head">
+      <app-section-title
+        eyebrow="Portfolio"
+        title="Selected"
+        highlight="Demo Projects"
+        lead="A curated set of sample projects that illustrate the kinds of solutions we build. As a newly established company we clearly label these as demonstrations rather than client engagements.">
+      </app-section-title>
+
+      <a class="btn btn--ghost" routerLink="/portfolio">
+        View All
+        <app-icon name="arrow-right" [size]="14"></app-icon>
+      </a>
+    </div>
+
+    <div class="portfolio__grid">
+      <app-portfolio-card *ngFor="let item of items" [item]="item"></app-portfolio-card>
+    </div>
+  </div>
+</section>

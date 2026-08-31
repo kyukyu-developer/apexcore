@@ -1,0 +1,88 @@
+@use 'variables' as *;
+
+// Breakpoints — mobile-first: `@include up(md) { }` = width >= 768
+@mixin up($bp) {
+  @if $bp == sm { @media (min-width: $bp-sm) { @content; } }
+  @else if $bp == md { @media (min-width: $bp-md) { @content; } }
+  @else if $bp == lg { @media (min-width: $bp-lg) { @content; } }
+  @else if $bp == xl { @media (min-width: $bp-xl) { @content; } }
+}
+
+@mixin down($bp) {
+  @if $bp == sm { @media (max-width: $bp-sm - 1) { @content; } }
+  @else if $bp == md { @media (max-width: $bp-md - 1) { @content; } }
+  @else if $bp == lg { @media (max-width: $bp-lg - 1) { @content; } }
+  @else if $bp == xl { @media (max-width: $bp-xl - 1) { @content; } }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin: 0 auto;
+  padding-left: $container-pad;
+  padding-right: $container-pad;
+
+  @include up(md) {
+    padding-left: $space-6;
+    padding-right: $space-6;
+  }
+}
+
+@mixin section-padding {
+  padding-top: $space-8;
+  padding-bottom: $space-8;
+
+  @include up(md) {
+    padding-top: $space-9;
+    padding-bottom: $space-9;
+  }
+}
+
+@mixin card-surface {
+  background: $color-bg-cream;
+  border: 1px solid $color-line;
+  border-radius: $radius-lg;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform $dur-base $ease-out, box-shadow $dur-base $ease-out, border-color $dur-base $ease-out;
+}
+
+@mixin card-hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.40), 0 6px 12px rgba(0, 0, 0, 0.25);
+  border-color: rgba($color-gold, 0.35);
+}
+
+@mixin heading-display {
+  font-family: $font-display;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: $color-dark;
+}
+
+@mixin heading-section {
+  font-family: $font-display;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: $color-dark;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+}
+
+@mixin eyebrow {
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-gold;
+}
+
+@mixin focus-ring {
+  outline: 2px solid rgba($color-red, 0.4);
+  outline-offset: 3px;
+}
+
+@mixin gradient-gold-underline {
+  background-image: linear-gradient(90deg, $color-gold 0%, $color-gold-deep 100%);
+}

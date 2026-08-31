@@ -1,0 +1,36 @@
+<section class="section why" id="why-apex-core">
+  <div class="container">
+    <div class="why__grid">
+      <div class="why__intro">
+        <app-section-title
+          eyebrow="Why Choose APEX CORE"
+          title="A new partner built on"
+          highlight="modern principles."
+          lead="We are a newly established team — and that gives you a partner who is hungry, focused and genuinely invested in your success. No layers, no bureaucracy — just quality work.">
+        </app-section-title>
+
+        <div class="why__note">
+          <div class="why__note-icon">
+            <app-icon name="shield" [size]="20"></app-icon>
+          </div>
+          <div>
+            <strong>Trust, earned honestly.</strong>
+            <p>Instead of borrowed statistics, we let our work, communication and outcomes speak for themselves.</p>
+          </div>
+        </div>
+      </div>
+
+      <ul class="why__list">
+        <li *ngFor="let s of strengths" class="why__item">
+          <div class="why__item-icon">
+            <app-icon [name]="s.icon" [size]="20"></app-icon>
+          </div>
+          <div class="why__item-body">
+            <h3>{{ s.title }}</h3>
+            <p>{{ s.description }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

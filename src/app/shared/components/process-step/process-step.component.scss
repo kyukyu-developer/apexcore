@@ -1,0 +1,88 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.process-step {
+  display: flex;
+  gap: $space-5;
+  position: relative;
+  padding-bottom: $space-6;
+}
+
+.process-step__marker {
+  position: relative;
+  flex: 0 0 auto;
+  width: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.process-step__number {
+  position: absolute;
+  top: -6px;
+  right: -4px;
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: $color-white;
+  background: $color-red;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.process-step__ring {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: $color-bg-cream;
+  border: 1.5px solid rgba($color-gold, 0.5);
+  color: $color-gold-deep;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 6px rgba($color-gold, 0.10);
+  transition: box-shadow $dur-base $ease-out, border-color $dur-base $ease-out, transform $dur-base $ease-out;
+}
+
+.process-step:hover .process-step__ring {
+  border-color: $color-red;
+  color: $color-red;
+  box-shadow: 0 0 0 8px rgba($color-red, 0.08);
+  transform: scale(1.04);
+}
+
+.process-step__line {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  bottom: -8px;
+  background: linear-gradient(to bottom, rgba($color-gold, 0.6), rgba($color-gold, 0));
+}
+
+.process-step__body {
+  padding-top: $space-3;
+  flex: 1 1 auto;
+}
+
+.process-step__title {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: $color-dark;
+  margin-bottom: $space-2;
+}
+
+.process-step__text {
+  color: $color-muted;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 480px;
+}

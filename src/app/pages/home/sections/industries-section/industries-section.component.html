@@ -1,0 +1,19 @@
+<section class="section industries" id="industries">
+  <div class="container">
+    <app-section-title
+      eyebrow="Industries We Serve"
+      title="Built for the way"
+      highlight="your industry works."
+      lead="We work across sectors — bringing patterns that work well and tailoring them to the realities of your business.">
+    </app-section-title>
+
+    <ul class="industries__grid">
+      <li *ngFor="let i of industries" class="industry">
+        <div class="industry__icon">
+          <app-icon [name]="i.icon" [size]="26"></app-icon>
+        </div>
+        <span class="industry__name">{{ i.name }}</span>
+      </li>
+    </ul>
+  </div>
+</section>

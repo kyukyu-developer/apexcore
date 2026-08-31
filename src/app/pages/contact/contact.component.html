@@ -1,0 +1,79 @@
+<section class="page-hero">
+  <div class="page-hero__bg" aria-hidden="true">
+    <div class="page-hero__blob page-hero__blob--gold"></div>
+    <div class="page-hero__blob page-hero__blob--red"></div>
+  </div>
+  <div class="container page-hero__inner">
+    <span class="chip">Contact</span>
+    <h1 class="page-hero__title">Let's talk about <span class="text-gold">your project.</span></h1>
+    <p class="page-hero__lead">Tell us about your business and what you're trying to build. We usually respond within one business day.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact__wrap">
+
+    <aside class="contact__aside">
+      <h3>Reach us directly</h3>
+      <ul class="contact__list">
+        <li>
+          <app-icon name="phone" [size]="18"></app-icon>
+          <div>
+            <strong>Phone</strong>
+            <a href="tel:+959663606129">09 663 606 129</a>
+          </div>
+        </li>
+        <li>
+          <app-icon name="mail" [size]="18"></app-icon>
+          <div>
+            <strong>Email</strong>
+            <a href="mailto:info&#64;apexcorebusiness.com">info&#64;apexcorebusiness.com</a>
+          </div>
+        </li>
+        <li>
+          <app-icon name="pin" [size]="18"></app-icon>
+          <div>
+            <strong>Address</strong>
+            <span>Yangon, Myanmar</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="contact__social">
+        <a href="#" aria-label="Facebook"><app-icon name="facebook" [size]="18"></app-icon></a>
+        <a href="#" aria-label="LinkedIn"><app-icon name="linkedin" [size]="18"></app-icon></a>
+        <a href="#" aria-label="Telegram"><app-icon name="telegram" [size]="18"></app-icon></a>
+      </div>
+    </aside>
+
+    <form class="contact__form" (submit)="$event.preventDefault(); onSubmit()">
+      <div class="contact__row">
+        <label>
+          <span>Name</span>
+          <input type="text" placeholder="Your name" required>
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" placeholder="you&#64;company.com" required>
+        </label>
+      </div>
+      <label class="contact__field">
+        <span>Company</span>
+        <input type="text" placeholder="Your company (optional)">
+      </label>
+      <label class="contact__field">
+        <span>How can we help?</span>
+        <textarea rows="5" placeholder="Tell us a bit about what you're trying to build..." required></textarea>
+      </label>
+
+      <button type="submit" class="btn btn--primary btn--lg">
+        Send Message
+        <app-icon name="arrow-right" [size]="16"></app-icon>
+      </button>
+
+      <p *ngIf="submitted" class="contact__thanks">
+        Thank you — this is a demo form. Real submission handling will be wired to a backend soon.
+      </p>
+    </form>
+  </div>
+</section>

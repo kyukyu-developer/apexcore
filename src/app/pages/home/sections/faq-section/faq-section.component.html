@@ -1,0 +1,27 @@
+<section class="section faq-section" id="faq">
+  <div class="container faq-section__wrap">
+
+    <div class="faq-section__aside">
+      <app-section-title
+        eyebrow="Frequently Asked"
+        title="Answers to"
+        highlight="common questions."
+        lead="Not seeing your question? Reach out to our team — we're happy to help figure out the right approach for your situation.">
+      </app-section-title>
+
+      <a class="btn btn--primary faq-section__cta" routerLink="/contact">
+        Ask a Question
+        <app-icon name="arrow-right" [size]="14"></app-icon>
+      </a>
+    </div>
+
+    <div class="faq-section__list">
+      <app-faq-item
+        *ngFor="let f of faqs; let i = index"
+        [faq]="f"
+        [open]="openIndex === i"
+        (toggled)="toggle(i)">
+      </app-faq-item>
+    </div>
+  </div>
+</section>

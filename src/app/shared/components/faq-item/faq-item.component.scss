@@ -1,0 +1,72 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.faq {
+  background: $color-bg-cream;
+  border: 1px solid $color-line;
+  border-radius: $radius-lg;
+  padding: $space-4 $space-5;
+  transition: border-color $dur-base $ease-out, box-shadow $dur-base $ease-out;
+
+  &:hover { border-color: rgba($color-gold, 0.5); }
+  &--open { border-color: rgba($color-red, 0.4); box-shadow: $shadow-card; }
+}
+
+.faq__q {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: $space-4;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+}
+
+.faq__category {
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-gold;
+  padding: 4px 8px;
+  background: rgba($color-gold, 0.10);
+  border: 1px solid rgba($color-gold, 0.28);
+  border-radius: $radius-pill;
+  white-space: nowrap;
+
+  @include down(md) { display: none; }
+}
+
+.faq__question {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: $color-dark;
+  line-height: 1.4;
+}
+
+.faq__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba($color-gold, 0.15);
+  color: $color-gold-deep;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background $dur-base $ease-out, color $dur-base $ease-out, transform $dur-base $ease-out;
+}
+
+.faq--open .faq__icon {
+  background: $color-red;
+  color: $color-white;
+  transform: rotate(180deg);
+}
+
+.faq__a {
+  padding-top: $space-4;
+  color: $color-muted;
+  line-height: 1.7;
+  font-size: 0.98rem;
+}

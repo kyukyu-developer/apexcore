@@ -1,0 +1,21 @@
+<section class="section solutions" id="solutions">
+  <div class="container">
+    <app-section-title
+      align="center"
+      eyebrow="Solutions"
+      title="Business systems for"
+      highlight="every operation."
+      lead="From front-office sales to back-office operations — modular solutions we can tailor, extend or build from scratch.">
+    </app-section-title>
+
+    <ul class="solutions__grid">
+      <li *ngFor="let s of solutions" class="solution">
+        <div class="solution__icon">
+          <app-icon [name]="s.icon" [size]="24"></app-icon>
+        </div>
+        <h3 class="solution__title">{{ s.title }}</h3>
+        <p class="solution__desc">{{ s.description }}</p>
+      </li>
+    </ul>
+  </div>
+</section>

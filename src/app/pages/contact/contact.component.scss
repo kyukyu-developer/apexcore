@@ -1,0 +1,156 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+:host { display: block; }
+
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(180deg, $color-bg-elev 0%, $color-bg-base 100%);
+  padding: calc(var(--header-height, 92px) + #{$space-6}) 0 $space-8;
+  text-align: center;
+
+  @include up(md) { padding: calc(var(--header-height, 92px) + #{$space-7}) 0 $space-9; }
+}
+
+.page-hero__bg { position: absolute; inset: 0; z-index: -1; }
+.page-hero__blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.30; }
+.page-hero__blob--gold { width: 320px; height: 320px; top: -60px; left: 20%; background: $color-gold; }
+.page-hero__blob--red  { width: 260px; height: 260px; bottom: -80px; right: 20%; background: $color-red; opacity: 0.18; }
+
+.page-hero__inner { max-width: 720px; margin: 0 auto; }
+.page-hero__title { @include heading-display; font-size: clamp(2rem, 4vw, 3rem); margin: $space-4 0; }
+.page-hero__lead  { color: $color-muted; font-size: 1.05rem; line-height: 1.7; }
+
+.contact__wrap {
+  display: grid;
+  gap: $space-7;
+  grid-template-columns: 1fr;
+
+  @include up(lg) { grid-template-columns: 0.85fr 1.15fr; gap: $space-7; }
+}
+
+.contact__aside h3 {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: $space-5;
+  color: $color-dark;
+}
+
+.contact__list {
+  display: grid;
+  gap: $space-4;
+
+  li {
+    display: flex;
+    gap: $space-4;
+    align-items: flex-start;
+    padding: $space-4;
+    background: $color-bg-light;
+    border-radius: $radius-md;
+    border: 1px solid $color-line;
+  }
+
+  app-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba($color-gold, 0.16);
+    color: $color-gold-deep;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+
+  strong {
+    display: block;
+    color: $color-dark;
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+  }
+  span { color: $color-muted; font-size: 0.9rem; }
+}
+
+.contact__social {
+  margin-top: $space-5;
+  display: flex;
+  gap: $space-2;
+
+  a {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: $color-bg-cream;
+    border: 1px solid $color-line;
+    color: $color-dark;
+    transition: background $dur-fast $ease-out, color $dur-fast $ease-out;
+
+    &:hover { background: $color-red; color: $color-white; border-color: $color-red; }
+  }
+}
+
+.contact__form {
+  background: $color-bg-cream;
+  border: 1px solid $color-line;
+  border-radius: $radius-lg;
+  padding: $space-6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  display: grid;
+  gap: $space-4;
+}
+
+.contact__row {
+  display: grid;
+  gap: $space-4;
+  grid-template-columns: 1fr;
+
+  @include up(sm) { grid-template-columns: 1fr 1fr; }
+}
+
+.contact__field { display: grid; gap: $space-2; }
+.contact__row label { display: grid; gap: $space-2; }
+
+.contact__form label span {
+  font-family: $font-body;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: $color-dark;
+}
+
+.contact__form input,
+.contact__form textarea {
+  width: 100%;
+  padding: $space-3 $space-4;
+  border-radius: $radius-md;
+  border: 1px solid $color-line;
+  background: $color-bg-light;
+  color: $color-dark;
+  font-size: 0.95rem;
+  transition: border-color $dur-fast $ease-out, background $dur-fast $ease-out, box-shadow $dur-fast $ease-out;
+
+  &:focus {
+    outline: none;
+    background: $color-bg-elev;
+    border-color: $color-red;
+    box-shadow: 0 0 0 4px rgba($color-red, 0.20);
+  }
+}
+
+.contact__form textarea { resize: vertical; min-height: 120px; }
+
+.contact__form .btn { justify-self: flex-start; }
+
+.contact__thanks {
+  padding: $space-3 $space-4;
+  background: rgba($color-gold, 0.18);
+  border: 1px solid rgba($color-gold-deep, 0.4);
+  color: $color-dark;
+  border-radius: $radius-md;
+  font-size: 0.92rem;
+}

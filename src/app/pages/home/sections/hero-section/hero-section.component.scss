@@ -1,0 +1,469 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+// ============================================================
+//  Hero — dark theme, image-driven layout
+// ============================================================
+$hero-bg-1: #0A0A0C;
+$hero-bg-2: #131317;
+$hero-bg-3: #08080A;
+
+.hero {
+  position: relative;
+  padding: calc(var(--header-height, 92px) + #{$space-3}) 0 0;
+  overflow: hidden;
+  isolation: isolate;
+  color: $color-white;
+  background:
+    radial-gradient(ellipse at 78% 30%, rgba($color-gold, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 8% 90%, rgba($color-gold-deep, 0.16) 0%, transparent 55%),
+    linear-gradient(180deg, $hero-bg-1 0%, $hero-bg-2 60%, $hero-bg-3 100%);
+
+  @include up(md) { padding-top: calc(var(--header-height, 92px) + #{$space-4}); }
+}
+
+.hero__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+
+.hero__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+.hero__blob--gold {
+  width: 520px; height: 520px;
+  top: -120px; right: 10%;
+  background: $color-gold;
+  opacity: 0.10;
+}
+.hero__blob--red {
+  width: 420px; height: 420px;
+  top: 260px; right: -140px;
+  background: $color-red;
+  opacity: 0.06;
+}
+
+// Diagonal gold light rays at bottom-left
+.hero__rays {
+  position: absolute;
+  left: -6%;
+  bottom: -12%;
+  width: 70%;
+  height: 60%;
+  transform: skewY(-14deg);
+  transform-origin: bottom left;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba($color-gold, 0.55) 40%, rgba($color-gold, 0.05) 100%) 0 20% / 100% 2px no-repeat,
+    linear-gradient(90deg, transparent 0%, rgba($color-gold, 0.35) 30%, transparent 100%)      0 34% / 100% 1px no-repeat,
+    linear-gradient(90deg, transparent 0%, rgba($color-gold-deep, 0.65) 40%, transparent 100%) 0 46% / 100% 2px no-repeat,
+    linear-gradient(90deg, transparent 0%, rgba($color-gold, 0.25) 20%, transparent 100%)      0 60% / 100% 1px no-repeat,
+    linear-gradient(90deg, transparent 0%, rgba($color-gold, 0.5) 35%, transparent 100%)       0 74% / 100% 2px no-repeat,
+    linear-gradient(90deg, transparent 0%, rgba($color-gold-deep, 0.35) 25%, transparent 100%) 0 88% / 100% 1px no-repeat;
+  filter: blur(0.4px);
+  opacity: 0.9;
+}
+
+.hero__inner {
+  display: grid;
+  gap: $space-6;
+  align-items: center;
+  grid-template-columns: 1fr;
+  padding-bottom: $space-6;
+
+  @include up(lg) {
+    grid-template-columns: 2fr 3fr;
+    gap: $space-3;
+    padding-bottom: $space-7;
+  }
+}
+
+// ============================================================
+//  Left content
+// ============================================================
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: $space-4;
+  color: $color-gold;
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+
+  .hero__eyebrow-bar {
+    width: 30px;
+    height: 2px;
+    border-radius: 2px;
+    background: $color-gold;
+  }
+}
+
+.hero__title {
+  font-family: $font-display;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.0;
+  color: $color-white;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  margin: 0 0 $space-5;
+
+  .hero__title-line { display: block; }
+  .hero__title-line--accent {
+    color: $color-gold;
+    background: linear-gradient(90deg, $color-gold-soft 0%, $color-gold 40%, $color-gold-deep 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// Typewriter reveal — characters occupy their space at opacity 0
+// so no layout shift, then fade in one by one.
+.hero__title-char {
+  opacity: 0;
+  transition: opacity 40ms linear;
+
+  &.is-visible { opacity: 1; }
+}
+
+.hero__title-caret {
+  display: none;
+  width: 0.08em;
+  height: 0.85em;
+  background: $color-gold;
+  vertical-align: -0.02em;
+  margin-left: 0.06em;
+  border-radius: 1px;
+
+  &.is-visible {
+    display: inline-block;
+    animation: hero-title-caret 0.9s step-end infinite;
+  }
+}
+
+@keyframes hero-title-caret {
+  0%, 50%       { opacity: 1; }
+  50.01%, 100%  { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__title-char { transition: none; opacity: 1; }
+  .hero__title-caret,
+  .hero__title-caret.is-visible { display: none; animation: none; }
+}
+
+.hero__lead {
+  color: rgba($color-white, 0.72);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  max-width: 380px;
+  margin: 0 0 $space-5;
+}
+
+// CTA buttons ------------------------------------------------
+.hero__actions {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: $space-3;
+  margin-bottom: 0;
+
+  @include down(sm) { flex-wrap: wrap; }
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0.65rem 1.1rem;
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: $radius-pill;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform $dur-base $ease-out, box-shadow $dur-base $ease-out,
+              background-color $dur-base $ease-out, color $dur-base $ease-out,
+              border-color $dur-base $ease-out;
+
+  app-icon { transition: transform $dur-base $ease-out; }
+  &:hover { transform: translateY(-1px); }
+  &:hover app-icon { transform: translateX(3px); }
+}
+
+.hero__cta--gold {
+  background: $color-gold;
+  color: #1B1B1F;
+  box-shadow: 0 10px 24px rgba($color-gold-deep, 0.30);
+
+  &:hover { background: $color-gold-deep; color: $color-white; box-shadow: 0 14px 30px rgba($color-gold-deep, 0.40); }
+}
+
+.hero__cta--outline {
+  background: transparent;
+  color: $color-gold;
+  border-color: $color-gold;
+
+  &:hover { background: rgba($color-gold, 0.10); color: $color-gold; }
+}
+
+// ============================================================
+//  Right visual — hero banner image
+// ============================================================
+.hero__visual {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @include down(lg) { align-items: center; }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 8% -4% 8% -4%;
+    background: radial-gradient(ellipse at 55% 55%, rgba($color-gold, 0.22) 0%, transparent 60%);
+    filter: blur(30px);
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+.hero__slider {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  aspect-ratio: 3 / 2;
+  animation: heroFloat 6s ease-in-out infinite;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(1.02);
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.55));
+  transition: opacity 0.8s $ease-out, transform 0.8s $ease-out;
+  pointer-events: none;
+
+  &.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hero__dots {
+  display: inline-flex;
+  gap: 10px;
+  margin-top: $space-4;
+  padding: 6px 10px;
+  border-radius: $radius-pill;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero__dot {
+  width: 22px;
+  height: 6px;
+  border-radius: 3px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.18);
+  transition: background $dur-base $ease-out, width $dur-base $ease-out;
+
+  &:hover { background: rgba($color-gold, 0.5); }
+
+  &.is-active {
+    width: 34px;
+    background: $color-gold;
+  }
+}
+
+// ============================================================
+//  Feature cards — inside left content, below CTAs
+// ============================================================
+.hero__features {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: $space-3;
+  margin-top: $space-5;
+
+  @include down(sm) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: $space-3; }
+}
+
+.hero__feature {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 12px 16px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 65%),
+    rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
+  min-width: 0;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform $dur-base $ease-out,
+    border-color $dur-base $ease-out,
+    box-shadow $dur-base $ease-out;
+
+  &:hover { transform: translateY(-4px); }
+}
+
+// Corner glow blob (reveals on hover)
+.hero__feature-glow {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: blur(38px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $dur-slow $ease-out;
+  z-index: -1;
+}
+
+.hero__feature--gold .hero__feature-glow {
+  background: radial-gradient(circle, rgba($color-gold, 0.65) 0%, transparent 70%);
+}
+.hero__feature--red .hero__feature-glow {
+  background: radial-gradient(circle, rgba($color-red, 0.55) 0%, transparent 70%);
+}
+
+.hero__feature:hover .hero__feature-glow { opacity: 1; }
+
+// Bottom accent bar (grows on hover)
+.hero__feature-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform $dur-slow $ease-out;
+}
+
+.hero__feature--gold .hero__feature-bar {
+  background: linear-gradient(90deg, $color-gold-soft, $color-gold, $color-gold-deep);
+}
+.hero__feature--red .hero__feature-bar {
+  background: linear-gradient(90deg, #E14648, $color-red, $color-red-deep);
+}
+
+.hero__feature:hover .hero__feature-bar { transform: scaleX(1); }
+
+// Hover border color
+.hero__feature--gold:hover {
+  border-color: rgba($color-gold, 0.55);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba($color-gold, 0.12);
+}
+.hero__feature--red:hover {
+  border-color: rgba($color-red, 0.55);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba($color-red, 0.12);
+}
+
+// Gradient icon tile
+.hero__feature-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-white;
+  transition: transform $dur-base $ease-out, box-shadow $dur-base $ease-out;
+
+  // Sheen overlay
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.28) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  app-icon { position: relative; z-index: 1; }
+  svg { stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+}
+
+.hero__feature--gold .hero__feature-icon {
+  background: linear-gradient(135deg, $color-gold-soft 0%, $color-gold 55%, $color-gold-deep 100%);
+  box-shadow: 0 6px 16px rgba($color-gold, 0.35);
+}
+.hero__feature--red .hero__feature-icon {
+  background: linear-gradient(135deg, #E14648 0%, $color-red 55%, $color-red-deep 100%);
+  box-shadow: 0 6px 16px rgba($color-red, 0.35);
+}
+
+.hero__feature:hover .hero__feature-icon {
+  transform: scale(1.08) rotate(-5deg);
+}
+.hero__feature--gold:hover .hero__feature-icon {
+  box-shadow: 0 10px 22px rgba($color-gold, 0.5);
+}
+.hero__feature--red:hover .hero__feature-icon {
+  box-shadow: 0 10px 22px rgba($color-red, 0.5);
+}
+
+.hero__feature-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+
+.hero__feature-head {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color $dur-base $ease-out;
+}
+
+.hero__feature--gold .hero__feature-head { color: $color-gold; }
+.hero__feature--red  .hero__feature-head { color: #F16F71; }
+
+.hero__feature-tail {
+  font-family: $font-body;
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: rgba($color-white, 0.9);
+  margin-top: 3px;
+  white-space: nowrap;
+}
+
+// ============================================================
+//  Animations
+// ============================================================
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__slider { animation: none !important; }
+  .hero__slide  { transition: opacity 0.2s linear !important; transform: none !important; }
+}

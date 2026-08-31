@@ -1,0 +1,49 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.process {
+  background: $color-bg-base;
+}
+
+.process__wrap {
+  display: grid;
+  gap: $space-7;
+  grid-template-columns: 1fr;
+
+  @include up(lg) { grid-template-columns: 0.9fr 1.1fr; gap: $space-8; align-items: start; }
+}
+
+.process__aside {
+  @include up(lg) {
+    position: sticky;
+    top: 100px;
+  }
+}
+
+.process__aside-note {
+  margin-top: $space-6;
+  padding: $space-4 $space-5;
+  background: $color-bg-light;
+  border-radius: $radius-md;
+  border: 1px dashed rgba($color-gold-deep, 0.4);
+  display: flex;
+  gap: $space-3;
+  align-items: center;
+  color: $color-body;
+  font-size: 0.95rem;
+}
+
+.process__aside-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: $color-red;
+  color: $color-white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.process__timeline {
+  padding-top: $space-3;
+}

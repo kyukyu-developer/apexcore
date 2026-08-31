@@ -1,0 +1,110 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.portfolio-card {
+  @include card-surface;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &:hover { @include card-hover; }
+}
+
+.portfolio-card__visual {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: $color-bg-light;
+}
+
+.portfolio-card__glow {
+  position: absolute;
+  inset: -20% -10% auto auto;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  filter: blur(30px);
+  opacity: 0.55;
+}
+
+.portfolio-card__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba($color-dark, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba($color-dark, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+}
+
+.portfolio-card__badge {
+  position: absolute;
+  top: $space-4;
+  left: $space-4;
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  padding: 5px 10px;
+  border-radius: $radius-pill;
+  background: $color-white;
+  color: $color-red;
+  border: 1px solid rgba($color-red, 0.2);
+}
+
+.portfolio-card__label {
+  position: absolute;
+  bottom: $space-4;
+  left: $space-4;
+  right: $space-4;
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  color: $color-dark;
+  letter-spacing: -0.01em;
+}
+
+// Gradient variants
+.portfolio-card--gold  .portfolio-card__glow { background: $color-gold; }
+.portfolio-card--red   .portfolio-card__glow { background: $color-red; opacity: 0.35; }
+.portfolio-card--dark  .portfolio-card__visual { background: #17181D; }
+.portfolio-card--dark  .portfolio-card__glow   { background: $color-gold; }
+.portfolio-card--dark  .portfolio-card__grid   { background-image:
+    linear-gradient(to right, rgba($color-white, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba($color-white, 0.06) 1px, transparent 1px); }
+.portfolio-card--dark  .portfolio-card__label  { color: $color-white; }
+.portfolio-card--cream .portfolio-card__visual { background: $color-bg-cream; }
+.portfolio-card--cream .portfolio-card__glow   { background: $color-gold; }
+
+.portfolio-card__body { padding: $space-5; }
+
+.portfolio-card__title {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: $color-dark;
+  margin-bottom: $space-2;
+}
+
+.portfolio-card__desc {
+  color: $color-muted;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: $space-4;
+}
+
+.portfolio-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+
+  li {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: $radius-pill;
+    background: $color-line-soft;
+    color: $color-muted;
+  }
+}

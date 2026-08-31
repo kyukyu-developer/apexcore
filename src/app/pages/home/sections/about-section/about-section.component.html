@@ -1,0 +1,134 @@
+<section class="section about" id="about">
+  <div class="container about__grid">
+
+    <!--============================
+        Left — visual card with badge
+    =============================-->
+    <div class="about__visual" aria-hidden="true">
+      <div class="about__scene">
+        <div class="about__scene-bg"></div>
+        <div class="about__scene-tint"></div>
+        <div class="about__scene-grid"></div>
+
+        <!-- Animated orbits -->
+        <div class="about__orbit about__orbit--1"></div>
+        <div class="about__orbit about__orbit--2"></div>
+        <div class="about__orbit about__orbit--3"></div>
+
+        <!-- Floating dashboard card -->
+        <div class="about__dash">
+          <div class="about__dash-head">
+            <span class="about__dash-dot"></span>
+            <span class="about__dash-dot"></span>
+            <span class="about__dash-dot"></span>
+            <em>analytics.io</em>
+          </div>
+          <div class="about__dash-chart">
+            <span style="--h: 40%; --d: 0s"></span>
+            <span style="--h: 70%; --d: .15s"></span>
+            <span style="--h: 55%; --d: .3s"></span>
+            <span style="--h: 90%; --d: .45s"></span>
+            <span style="--h: 65%; --d: .6s"></span>
+            <span style="--h: 80%; --d: .75s"></span>
+          </div>
+          <div class="about__dash-line"></div>
+          <div class="about__dash-line about__dash-line--short"></div>
+        </div>
+
+        <!-- Floating snippet card -->
+        <div class="about__snippet">
+          <div class="about__snippet-row"><i></i><i></i></div>
+          <div class="about__snippet-row"><i></i><i></i><i></i></div>
+          <div class="about__snippet-row"><i></i></div>
+        </div>
+
+        <!-- Floating particles -->
+        <span class="about__particle about__particle--1"></span>
+        <span class="about__particle about__particle--2"></span>
+        <span class="about__particle about__particle--3"></span>
+        <span class="about__particle about__particle--4"></span>
+
+        <div class="about__badge">
+          <div class="about__badge-mark">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path d="M12 2 L22 12 L12 22 L2 12 Z" fill="none" stroke="#D4AF79" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="3" fill="#A8222E"/>
+            </svg>
+          </div>
+          <div class="about__badge-text">
+            <strong>Modern</strong>
+            <em>Technology Focus</em>
+          </div>
+        </div>
+
+        <div class="about__badge-note">
+          Delivering innovative IT solutions that make a difference.
+        </div>
+      </div>
+    </div>
+
+    <!--============================
+        Middle — About copy
+    =============================-->
+    <div class="about__content">
+      <span class="about__eyebrow">About APEX CORE</span>
+      <h2 class="about__title">
+        We Turn Ideas Into<br>
+        Powerful <span class="text-gold">Digital Solutions</span>
+      </h2>
+      <p class="about__body">
+        APEX CORE is a newly established IT company dedicated to delivering
+        high-quality digital solutions. We combine technology, creativity
+        and industry expertise to help businesses transform, grow and
+        achieve their goals.
+      </p>
+
+      <ul class="about__checks">
+        <li *ngFor="let c of checks">
+          <span class="about__check-mark">
+            <app-icon name="check" [size]="12"></app-icon>
+          </span>
+          {{ c }}
+        </li>
+      </ul>
+    </div>
+
+    <!--============================
+        Right — Red CTA card
+    =============================-->
+    <div class="about__cta">
+      <div class="about__cta-bg" aria-hidden="true">
+        <div class="about__cta-glow"></div>
+        <div class="about__cta-grid"></div>
+        <div class="about__cta-ring about__cta-ring--1"></div>
+        <div class="about__cta-ring about__cta-ring--2"></div>
+        <div class="about__cta-ring about__cta-ring--3"></div>
+        <span class="about__cta-spark about__cta-spark--1"></span>
+        <span class="about__cta-spark about__cta-spark--2"></span>
+        <span class="about__cta-spark about__cta-spark--3"></span>
+      </div>
+
+      <div class="about__cta-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28">
+          <path d="M20 4c4 3 6 8 6 12l-4 4h-12l-4-4c0-4 2-9 6-12l4-2 4 2z"
+                fill="none" stroke="#D4AF79" stroke-width="1.8" stroke-linejoin="round"/>
+          <circle cx="16" cy="14" r="2.5" fill="none" stroke="#D4AF79" stroke-width="1.8"/>
+          <path d="M12 22l-2 4M20 22l2 4" fill="none" stroke="#D4AF79" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <h3 class="about__cta-title">
+        Let's Build Something<br>Amazing Together
+      </h3>
+      <p class="about__cta-text">
+        Ready to take your business to the next level?
+      </p>
+
+      <a class="btn btn--ghost about__cta-btn" routerLink="/contact">
+        Contact Us
+        <app-icon name="arrow-right" [size]="14"></app-icon>
+      </a>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,41 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.trusted {
+  padding: $space-6 0 $space-7;
+  background: $color-bg-base;
+}
+
+.trusted__label {
+  text-align: center;
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: $color-muted;
+  margin-bottom: $space-5;
+}
+
+.trusted__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: $space-5 $space-6;
+}
+
+.trusted__item {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  color: #9AA0A6;
+  font-family: $font-display;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 1.05rem;
+  opacity: 0.85;
+  transition: opacity $dur-fast $ease-out, color $dur-fast $ease-out;
+
+  &:hover { opacity: 1; color: $color-dark; }
+}

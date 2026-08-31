@@ -1,0 +1,7 @@
+<header class="section-head" [class.section-head--center]="align === 'center'">
+  <span class="section-head__eyebrow" *ngIf="eyebrow">{{ eyebrow }}</span>
+  <h2 class="section-head__title">
+    {{ title }}<ng-container *ngIf="highlight"> <span class="text-gold">{{ highlight }}</span></ng-container>
+  </h2>
+  <p class="section-head__lead" *ngIf="lead">{{ lead }}</p>
+</header>

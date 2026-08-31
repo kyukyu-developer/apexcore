@@ -1,0 +1,12 @@
+<div class="faq" [class.faq--open]="open">
+  <button type="button" class="faq__q" (click)="onToggle()" [attr.aria-expanded]="open">
+    <span class="faq__category">{{ faq.category }}</span>
+    <span class="faq__question">{{ faq.question }}</span>
+    <span class="faq__icon" aria-hidden="true">
+      <app-icon [name]="open ? 'minus' : 'plus'" [size]="18"></app-icon>
+    </span>
+  </button>
+  <div class="faq__a" [attr.hidden]="!open ? true : null">
+    <p>{{ faq.answer }}</p>
+  </div>
+</div>
