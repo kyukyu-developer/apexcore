@@ -13,19 +13,25 @@
         <span>WELCOME TO APEX CORE</span>
       </div>
 
-      <h1 class="hero__title" aria-label="Innovating Solutions">
-        <span class="hero__title-line" aria-hidden="true">
+      <h1 class="hero__title" aria-label="Innovating Solutions. Empowering Growth.">
+        <span class="hero__title-line"
+              [class.is-typing]="line1Revealed > 0 || showCaret1"
+              aria-hidden="true">
           <span *ngFor="let ch of line1Chars; let i = index"
                 class="hero__title-char"
-                [class.is-visible]="i < line1Revealed">{{ ch }}</span>
+                [class.is-space]="ch === ' '"
+                [class.is-visible]="i < line1Revealed">{{ ch === ' ' ? ' ' : ch }}</span>
           <span class="hero__title-caret"
                 [class.is-visible]="showCaret1"
                 aria-hidden="true"></span>
         </span>
-        <span class="hero__title-line hero__title-line--accent" aria-hidden="true">
+        <span class="hero__title-line hero__title-line--accent"
+              [class.is-typing]="line2Revealed > 0 || showCaret2"
+              aria-hidden="true">
           <span *ngFor="let ch of line2Chars; let i = index"
                 class="hero__title-char"
-                [class.is-visible]="i < line2Revealed">{{ ch }}</span>
+                [class.is-space]="ch === ' '"
+                [class.is-visible]="i < line2Revealed">{{ ch === ' ' ? ' ' : ch }}</span>
           <span class="hero__title-caret"
                 [class.is-visible]="showCaret2"
                 aria-hidden="true"></span>
@@ -33,16 +39,17 @@
       </h1>
 
       <p class="hero__lead">
-        Empowering businesses with innovative technology solutions to drive growth
-        and create a better future.
+        Apex Core delivers smart, scalable and innovative IT solutions that help
+        businesses streamline operations, drive efficiency and achieve sustainable
+        growth.
       </p>
 
       <div class="hero__actions">
-        <a class="hero__cta hero__cta--gold" routerLink="/services">
+        <a class="hero__cta hero__cta--gold" routerLink="/" fragment="services">
           OUR SERVICES
           <app-icon name="arrow-right" [size]="16"></app-icon>
         </a>
-        <a class="hero__cta hero__cta--outline" routerLink="/solutions">
+        <a class="hero__cta hero__cta--outline" routerLink="/" fragment="solutions">
           EXPLORE SOLUTIONS
           <app-icon name="arrow-right" [size]="16"></app-icon>
         </a>
@@ -54,7 +61,7 @@
              [class]="'hero__feature--' + f.accent">
           <span class="hero__feature-glow" aria-hidden="true"></span>
           <span class="hero__feature-icon">
-            <app-icon [name]="f.icon" [size]="20"></app-icon>
+            <app-icon [name]="f.icon" [size]="16"></app-icon>
           </span>
           <div class="hero__feature-text">
             <div class="hero__feature-head">{{ f.head }}</div>

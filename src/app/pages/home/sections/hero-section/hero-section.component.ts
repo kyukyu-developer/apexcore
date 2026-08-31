@@ -17,7 +17,7 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
   readonly slides: string[] = ['hero-banner.png', 'hero-banner-2.png'];
   currentSlide = 0;
   private timerId: ReturnType<typeof setInterval> | null = null;
-  private readonly intervalMs = 5000;
+  private readonly intervalMs = 3000;
 
   readonly features: HeroFeature[] = [
     { icon: 'rocket', head: 'INNOVATIVE', tail: 'Solutions', accent: 'gold' },
@@ -27,8 +27,8 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
   ];
 
   // Typewriter state for the hero title
-  private readonly line1Full = 'INNOVATING';
-  private readonly line2Full = 'SOLUTIONS';
+  private readonly line1Full = 'Innovating Solutions.';
+  private readonly line2Full = 'Empowering Growth.';
   readonly line1Chars: string[] = this.line1Full.split('');
   readonly line2Chars: string[] = this.line2Full.split('');
   line1Revealed = 0;
@@ -89,11 +89,11 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const charDelay = 85;
-    const startDelay = 300;
-    const gapBetweenLines = 400;
-    const line2StartDelay = startDelay + this.line1Full.length * charDelay + gapBetweenLines;
+    const charDelay = 45;
+    const startDelay = 200;
+    const line2StartDelay = startDelay + this.line1Full.length * charDelay + 120;
 
+    // Caret follows the line being typed
     this.showCaret1 = true;
 
     for (let i = 1; i <= this.line1Full.length; i++) {
@@ -105,13 +105,19 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
     this.typeTimers.push(setTimeout(() => {
       this.showCaret1 = false;
       this.showCaret2 = true;
-    }, line2StartDelay - 100));
+    }, line2StartDelay - 60));
 
     for (let i = 1; i <= this.line2Full.length; i++) {
       this.typeTimers.push(setTimeout(() => {
         this.line2Revealed = i;
       }, line2StartDelay + i * charDelay));
     }
+
+    // Turn off the caret shortly after line 2 finishes so it doesn't blink forever
+    const totalDuration = line2StartDelay + this.line2Full.length * charDelay + 800;
+    this.typeTimers.push(setTimeout(() => {
+      this.showCaret2 = false;
+    }, totalDuration));
   }
 
   private clearTyping(): void {

@@ -103,42 +103,74 @@ $hero-bg-3: #08080A;
   font-family: $font-display;
   font-weight: 900;
   letter-spacing: -0.01em;
-  line-height: 1.0;
+  line-height: 1.1;
   color: $color-white;
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: clamp(1.85rem, 3.6vw, 2.85rem);
   margin: 0 0 $space-5;
 
-  .hero__title-line { display: block; }
+  .hero__title-line {
+    display: block;
+    min-height: 1em;
+    // Prevent line-breaking between per-character inline-block spans.
+    white-space: nowrap;
+
+    // Before the line starts typing, don't reserve character space
+    &:not(.is-typing) .hero__title-char { display: none; }
+  }
+
+  // Solid gold for the accent line — a per-char gradient (from splitting
+  // the text into inline-block spans) either looks noisy or leaves each
+  // child invisible under -webkit-text-fill-color: transparent.
   .hero__title-line--accent {
     color: $color-gold;
-    background: linear-gradient(90deg, $color-gold-soft 0%, $color-gold 40%, $color-gold-deep 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+    .hero__title-char {
+      color: $color-gold;
+      -webkit-text-fill-color: currentColor;
+      background: none;
+    }
   }
 }
 
-// Typewriter reveal — characters occupy their space at opacity 0
-// so no layout shift, then fade in one by one.
+// Typewriter reveal — characters occupy their space at visibility: hidden
+// (no layout shift), then snap in with a tiny scale pop on reveal.
 .hero__title-char {
-  opacity: 0;
-  transition: opacity 40ms linear;
+  display: inline-block;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: transform 140ms $ease-out;
 
-  &.is-visible { opacity: 1; }
+  &.is-space {
+    // A single space inside inline-block collapses — give it explicit width.
+    width: 0.28em;
+  }
+
+  &.is-visible {
+    visibility: visible;
+    transform: translateY(0);
+    animation: hero-title-char-pop 180ms $ease-out both;
+  }
+}
+
+@keyframes hero-title-char-pop {
+  0%   { transform: translateY(6px) scale(0.9); }
+  60%  { transform: translateY(0)   scale(1.04); }
+  100% { transform: translateY(0)   scale(1); }
 }
 
 .hero__title-caret {
   display: none;
-  width: 0.08em;
-  height: 0.85em;
+  width: 0.1em;
+  height: 0.95em;
   background: $color-gold;
-  vertical-align: -0.02em;
-  margin-left: 0.06em;
-  border-radius: 1px;
+  vertical-align: -0.05em;
+  margin-left: 0.08em;
+  border-radius: 2px;
+  box-shadow: 0 0 12px rgba($color-gold, 0.6);
 
   &.is-visible {
     display: inline-block;
-    animation: hero-title-caret 0.9s step-end infinite;
+    animation: hero-title-caret 0.7s step-end infinite;
   }
 }
 
@@ -148,7 +180,12 @@ $hero-bg-3: #08080A;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__title-char { transition: none; opacity: 1; }
+  .hero__title-char {
+    transition: none;
+    animation: none;
+    visibility: visible;
+    transform: none;
+  }
   .hero__title-caret,
   .hero__title-caret.is-visible { display: none; animation: none; }
 }
@@ -235,6 +272,7 @@ $hero-bg-3: #08080A;
   }
 }
 
+
 .hero__slider {
   position: relative;
   width: 100%;
@@ -295,7 +333,7 @@ $hero-bg-3: #08080A;
 .hero__features {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: $space-3;
+  gap: $space-2;
   margin-top: $space-5;
 
   @include down(sm) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: $space-3; }
@@ -306,9 +344,9 @@ $hero-bg-3: #08080A;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
-  padding: 14px 12px 16px;
-  border-radius: 14px;
+  gap: 6px;
+  padding: 10px 10px 12px;
+  border-radius: 12px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 65%),
     rgba(255, 255, 255, 0.02);
@@ -328,12 +366,12 @@ $hero-bg-3: #08080A;
 // Corner glow blob (reveals on hover)
 .hero__feature-glow {
   position: absolute;
-  top: -40px;
-  right: -40px;
-  width: 120px;
-  height: 120px;
+  top: -30px;
+  right: -30px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  filter: blur(38px);
+  filter: blur(30px);
   opacity: 0;
   pointer-events: none;
   transition: opacity $dur-slow $ease-out;
@@ -384,9 +422,9 @@ $hero-bg-3: #08080A;
 .hero__feature-icon {
   position: relative;
   flex: 0 0 auto;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -436,8 +474,8 @@ $hero-bg-3: #08080A;
 .hero__feature-head {
   font-family: $font-display;
   font-weight: 800;
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
+  font-size: 0.6rem;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   white-space: nowrap;
   transition: color $dur-base $ease-out;
@@ -449,9 +487,9 @@ $hero-bg-3: #08080A;
 .hero__feature-tail {
   font-family: $font-body;
   font-weight: 600;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   color: rgba($color-white, 0.9);
-  margin-top: 3px;
+  margin-top: 2px;
   white-space: nowrap;
 }
 
