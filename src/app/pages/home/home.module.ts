@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../../shared/shared.module';
-import { HomeRoutingModule } from './home-routing.module';
 
 import { HomeComponent } from './home.component';
 import { HeroSectionComponent } from './sections/hero-section/hero-section.component';
@@ -31,6 +30,6 @@ import { FaqSectionComponent } from './sections/faq-section/faq-section.componen
     CtaSectionComponent,
     FaqSectionComponent,
   ],
-  imports: [SharedModule, HomeRoutingModule],
+  imports: [SharedModule],
 })
 export class HomeModule {}

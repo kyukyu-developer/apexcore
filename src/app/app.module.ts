@@ -6,14 +6,16 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { LayoutModule } from './layout/layout.module';
+import { HomeModule } from './pages/home/home.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     CoreModule,
     LayoutModule,
+    HomeModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
-    pathMatch: 'full',
-  },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   {
     path: 'about',
     loadChildren: () => import('./pages/about/about.module').then(m => m.AboutModule),
@@ -34,6 +32,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, {
     scrollPositionRestoration: 'top',
     anchorScrolling: 'enabled',
+    preloadingStrategy: PreloadAllModules,
   })],
   exports: [RouterModule],
 })

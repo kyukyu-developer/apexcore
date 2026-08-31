@@ -90,16 +90,19 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
     }
 
     const charDelay = 45;
-    const startDelay = 200;
+    const startDelay = 0;
     const line2StartDelay = startDelay + this.line1Full.length * charDelay + 120;
 
-    // Caret follows the line being typed
+    // Caret follows the line being typed — reveal first char and caret
+    // synchronously so the title is visible on first paint instead of
+    // flashing empty for one frame.
     this.showCaret1 = true;
+    this.line1Revealed = 1;
 
-    for (let i = 1; i <= this.line1Full.length; i++) {
+    for (let i = 2; i <= this.line1Full.length; i++) {
       this.typeTimers.push(setTimeout(() => {
         this.line1Revealed = i;
-      }, startDelay + i * charDelay));
+      }, startDelay + (i - 1) * charDelay));
     }
 
     this.typeTimers.push(setTimeout(() => {
