@@ -46,33 +46,36 @@
       </div>
     </aside>
 
-    <form class="contact__form" (submit)="$event.preventDefault(); onSubmit()">
+    <form #contactForm="ngForm" class="contact__form" (ngSubmit)="onSubmit()" novalidate>
       <div class="contact__row">
         <label>
           <span>Name</span>
-          <input type="text" placeholder="Your name" required>
+          <input type="text" name="name" placeholder="Your name" required [(ngModel)]="form.name">
         </label>
         <label>
           <span>Email</span>
-          <input type="email" placeholder="you&#64;company.com" required>
+          <input type="email" name="email" placeholder="you&#64;company.com" required [(ngModel)]="form.email">
         </label>
       </div>
       <label class="contact__field">
         <span>Company</span>
-        <input type="text" placeholder="Your company (optional)">
+        <input type="text" name="company" placeholder="Your company (optional)" [(ngModel)]="form.company">
       </label>
       <label class="contact__field">
         <span>How can we help?</span>
-        <textarea rows="5" placeholder="Tell us a bit about what you're trying to build..." required></textarea>
+        <textarea rows="5" name="message" placeholder="Tell us a bit about what you're trying to build..." required [(ngModel)]="form.message"></textarea>
       </label>
 
-      <button type="submit" class="btn btn--primary btn--lg">
-        Send Message
-        <app-icon name="arrow-right" [size]="16"></app-icon>
+      <button type="submit" class="btn btn--primary btn--lg" [disabled]="sending || contactForm.invalid">
+        {{ sending ? 'Sending...' : 'Send Message' }}
+        <app-icon *ngIf="!sending" name="arrow-right" [size]="16"></app-icon>
       </button>
 
       <p *ngIf="submitted" class="contact__thanks">
-        Thank you — this is a demo form. Real submission handling will be wired to a backend soon.
+        Thanks — your message is on its way. We'll get back to you within one business day.
+      </p>
+      <p *ngIf="errorMessage" class="contact__error">
+        {{ errorMessage }}
       </p>
     </form>
   </div>

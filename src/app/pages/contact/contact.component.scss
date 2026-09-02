@@ -154,3 +154,17 @@
   border-radius: $radius-md;
   font-size: 0.92rem;
 }
+
+.contact__error {
+  padding: $space-3 $space-4;
+  background: rgba($color-red, 0.14);
+  border: 1px solid rgba($color-red, 0.5);
+  color: $color-dark;
+  border-radius: $radius-md;
+  font-size: 0.92rem;
+}
+
+.contact__form .btn[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
